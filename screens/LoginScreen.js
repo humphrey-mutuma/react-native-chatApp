@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   SafeAreaView,
@@ -9,12 +9,33 @@ import {
 import { Button, Image, Input } from "@rneui/themed";
 import { StatusBar } from "expo-status-bar";
 import { Dimensions } from "react-native";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
-  const signIn = () => {};
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        navigation.replace("Home");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const signIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        if (userCredential.user) {
+          navigation.navigate("Home");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <StatusBar style="light" />

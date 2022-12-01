@@ -7,6 +7,8 @@ import {
 import React, { useLayoutEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Button, Input, Text } from "@rneui/themed";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -23,7 +25,23 @@ const RegisterScreen = ({ navigation }) => {
   }, [navigation]);
 
   const register = () => {
-    console.log("register");
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        console.log("userCredentials", userCredentials);
+        if (userCredentials.user) {
+          userCredentials.user
+            .updateProfile({
+              displayName: name,
+              photoURL:
+                imageUri ||
+                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
+            })
+            .then((s) => {
+              navigation.navigate("Home");
+            });
+        }
+      })
+      .catch((err) => alert(err.message));
   };
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
