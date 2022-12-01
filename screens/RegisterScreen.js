@@ -4,15 +4,23 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Button, Input, Text } from "@rneui/themed";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [imageUri, setimageUri] = useState("");
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: "My Login",
+    });
+
+    // return;
+  }, [navigation]);
 
   const register = () => {
     console.log("register");
@@ -52,7 +60,8 @@ const RegisterScreen = () => {
           onSubmitEditing={register}
         />
 
-        <Button raised
+        <Button
+          raised
           title="Register"
           buttonStyle={{
             borderRadius: 5,
