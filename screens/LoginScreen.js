@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { Button, Image, Input } from "@rneui/themed";
 import { StatusBar } from "expo-status-bar";
 import { Dimensions } from "react-native";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
 
@@ -57,14 +63,16 @@ export default function LoginScreen() {
             height: 50,
             marginVertical: 10,
           }}
+          onPress={() => navigation.navigate("Register")}
         />
       </View>
-      <View style={{height:110}} />
+      <View style={{ height: 100 }} />
     </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
   container: {
+    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
