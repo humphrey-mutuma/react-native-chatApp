@@ -59,6 +59,7 @@ export default function LoginScreen({ navigation }) {
           placeholder="Password"
           secureTextEntry
           type="password"
+          onSubmitEditing={signIn}
         />
         <Button
           title="Log in"
