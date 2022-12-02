@@ -2,9 +2,9 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { Avatar, ListItem } from "@rneui/themed";
 
-const CustomListItem = ({ chatName, id }) => {
+const CustomListItem = ({ chatName, id, enterChat }) => {
   return (
-    <ListItem key={id} bottomDivider>
+    <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
       <Avatar
         rounded
         source={{

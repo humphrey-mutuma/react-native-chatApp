@@ -39,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
     fetchData()
       // make sure to catch any error
       .catch((error) => alert(error.message));
-  }, [navigation]);
+  }, []);
 
   // console.log("chats", chats);
 
@@ -83,12 +83,24 @@ const HomeScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
+  // function to navigate to chat page and pass id and chatName alongside
+  const enterChat = (id, chatName) => {
+    navigation.navigate("Chat", {
+      id,
+      chatName,
+    });
+  };
   return (
     <SafeAreaView>
       <StatusBar style="dark" />
       <ScrollView>
         {chats.map(({ id, data: { chatName } }) => (
-          <CustomListItem key={id} id={id} chatName={chatName} />
+          <CustomListItem
+            key={id}
+            id={id}
+            chatName={chatName}
+            enterChat={enterChat}
+          />
         ))}
       </ScrollView>
     </SafeAreaView>

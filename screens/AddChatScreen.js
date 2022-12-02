@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 
-export default function AddChat({ navigation }) {
+export default function AddChatScreen({ navigation }) {
   const [input, setInput] = useState();
 
   useLayoutEffect(() => {
