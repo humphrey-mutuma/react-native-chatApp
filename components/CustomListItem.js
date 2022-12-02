@@ -2,9 +2,9 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { Avatar, ListItem } from "@rneui/themed";
 
-const CustomListItem = () => {
+const CustomListItem = ({ chatName, id }) => {
   return (
-    <ListItem>
+    <ListItem key={id} bottomDivider>
       <Avatar
         rounded
         source={{
@@ -13,7 +13,7 @@ const CustomListItem = () => {
       />
       <ListItem.Content>
         <ListItem.Title style={{ fontWeight: "800" }}>
-          React Chat group
+          {chatName}
         </ListItem.Title>
         <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,

@@ -1,13 +1,22 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  AsyncStorage,
+} from "react-native";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import CustomListItem from "../components/CustomListItem";
 import { Avatar, Button } from "@rneui/themed";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { signOut } from "firebase/auth";
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
+import { collection, getDocs, orderBy } from "firebase/firestore";
+
 const HomeScreen = ({ navigation }) => {
+  const [chats, setChats] = useState([]);
   const logOut = () => {
     signOut(auth)
       .then(() => {
@@ -16,6 +25,24 @@ const HomeScreen = ({ navigation }) => {
       })
       .catch((error) => alert(error.message));
   };
+
+  useEffect(() => {
+    // declare the async data fetching function
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collection(db, "chats"));
+      querySnapshot.forEach((doc) => {
+        setChats((prev) => [{ id: doc.id, data: doc.data() }, ...prev]);
+      });
+    };
+
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch((error) => alert(error.message));
+  }, [navigation]);
+
+  // console.log("chats", chats);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Home",
@@ -60,7 +87,9 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView>
       <StatusBar style="dark" />
       <ScrollView>
-        <CustomListItem />
+        {chats.map(({ id, data: { chatName } }) => (
+          <CustomListItem key={id} id={id} chatName={chatName} />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

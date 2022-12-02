@@ -16,7 +16,7 @@ export default function AddChat({ navigation }) {
 
   const createChat = async () => {
     await addDoc(collection(db, "chats"), {
-      chatName:input
+      chatName: input,
     })
       .then(() => {
         navigation.goBack();
@@ -24,7 +24,7 @@ export default function AddChat({ navigation }) {
       .catch((err) => alert(err));
   };
   return (
-    <View>
+    <View style={styles.container}>
       <Input
         value={input}
         placeholder="Add a chat name"
@@ -39,4 +39,10 @@ export default function AddChat({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    padding: 30,
+    height: "100%",
+  },
+});
