@@ -20,7 +20,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home" //for development purposes only
+        // initialRouteName="Home" //for development purposes only
         screenOptions={globaScreenOptions}
       >
         <Stack.Screen name="Login" component={LoginScreen} />

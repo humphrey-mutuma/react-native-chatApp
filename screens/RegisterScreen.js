@@ -86,6 +86,7 @@ const RegisterScreen = ({ navigation }) => {
 
         <Button
           raised
+          disabled={!name || !password || ! password}
           title="Register"
           buttonStyle={{
             borderRadius: 5,

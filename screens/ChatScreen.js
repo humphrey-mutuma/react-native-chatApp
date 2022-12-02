@@ -108,7 +108,7 @@ export default function ChatScreen({ navigation, route }) {
     getMessages();
   }, [route]);
 
-  console.log("messages ", messages); // return []
+  // console.log("messages ", messages); // return []
   return (
     <SafeAreaView style={{ height: "100%", backgroundColor: "white" }}>
       <StatusBar style="light" />

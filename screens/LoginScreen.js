@@ -68,6 +68,7 @@ export default function LoginScreen({ navigation }) {
           onSubmitEditing={signIn}
         />
         <Button
+          disabled={!email || !password}
           title="Log in"
           buttonStyle={{
             backgroundColor: "blue",
@@ -83,7 +84,7 @@ export default function LoginScreen({ navigation }) {
         <Button
           title="Register"
           type="outline"
-          buttonStyle={{
+           buttonStyle={{
             borderRadius: 5,
           }}
           titleStyle={{ fontWeight: "500", fontSize: 22 }}

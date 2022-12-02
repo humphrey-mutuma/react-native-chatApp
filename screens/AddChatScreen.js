@@ -4,13 +4,14 @@ import { Button, Input } from "@rneui/themed";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { StatusBar } from "expo-status-bar";
 
 export default function AddChatScreen({ navigation }) {
   const [input, setInput] = useState();
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Add Chats",
+      title: "Chats",
     });
   }, [navigation]);
 
@@ -25,6 +26,8 @@ export default function AddChatScreen({ navigation }) {
   };
   return (
     <View style={styles.container}>
+      <StatusBar style="light" />
+
       <Input
         value={input}
         placeholder="Add a chat name"
@@ -34,7 +37,11 @@ export default function AddChatScreen({ navigation }) {
           <Icon name="wechat" type="AntDesign" size={24} color="black" />
         }
       />
-      <Button onPress={createChat} title="Create a chat" />
+      <Button
+        disabled={!input}
+        onPress={createChat}
+        title="Create Group Chat"
+      />
     </View>
   );
 }
