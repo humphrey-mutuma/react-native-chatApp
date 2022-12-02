@@ -1,15 +1,38 @@
 <!-- Title -->
+<p align="center" width="100%">
+      <img alt=" " width="45%" src="https://firebasestorage.googleapis.com/v0/b/chatapp-9e121.appspot.com/o/Screenshot_20221202-182801_Expo%20Go.jpg?alt=media&token=c6fbfb6e-2ff0-4576-b097-fa5de4be3baf" />  
+      <img alt=" " width="45%" src="https://firebasestorage.googleapis.com/v0/b/chatapp-9e121.appspot.com/o/Screenshot_20221202-182626_Expo%20Go.jpg?alt=media&token=ff44e878-a76f-4b02-90c2-5ae87c2e2619" />
+</p>
+<p align="center" width="100%">
+      <img alt=" " width="45%" src="https://firebasestorage.googleapis.com/v0/b/chatapp-9e121.appspot.com/o/Screenshot_20221202-183058_Expo%20Go.jpg?alt=media&token=b5496ca6-6d05-4edb-b3a6-1f26ddc1e19b" />  
+      <img alt=" " width="45%" src="https://firebasestorage.googleapis.com/v0/b/chatapp-9e121.appspot.com/o/Screenshot_20221202-183235_Expo%20Go.jpg?alt=media&token=390a89d8-06c8-44d2-86a9-168071d90126" />
+</p>
+
 
 <b>Open the link below on your expo mobile app to view the app</b>
 <br />
 
 ```sh
-exp://exp.host/@humphrey-mutuma/TeslaClone?release-channel=default
+exp://exp.host/@humphrey-mutuma/ChatApp?release-channel=default
 ```
+
+<h2 align="">
+  Run in development
+</h2>
+
+```sh
+1. Clone this repository
+2. Install dependencies -> npm install
+3. run emulator/simulator -> npx expo start
+4. install expo Go app to test on real device
+``````
+
+
 
 <h1 align="center">
   Create React Native App
 </h1>
+
 
 <!-- Header -->
 
