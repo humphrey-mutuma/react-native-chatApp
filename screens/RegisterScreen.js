@@ -1,6 +1,8 @@
 import {
   Dimensions,
+  Keyboard,
   KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   View,
 } from "react-native";
@@ -25,6 +27,7 @@ const RegisterScreen = ({ navigation }) => {
   }, [navigation]);
 
   const register = () => {
+    Keyboard.dismiss; // hide keyboard;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         console.log("userCredentials", userCredentials);
@@ -44,7 +47,10 @@ const RegisterScreen = ({ navigation }) => {
       .catch((err) => alert(err.message));
   };
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <StatusBar style="light" />
       <Text h3 style={{ marginBottom: 10 }}>
         Creat an account

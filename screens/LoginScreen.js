@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
+  Keyboard,
   KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -27,6 +29,7 @@ export default function LoginScreen({ navigation }) {
   }, []);
 
   const signIn = () => {
+    Keyboard.dismiss;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -37,7 +40,10 @@ export default function LoginScreen({ navigation }) {
       .catch((error) => alert(error.message));
   };
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <StatusBar style="light" />
       <Image
         source={{
